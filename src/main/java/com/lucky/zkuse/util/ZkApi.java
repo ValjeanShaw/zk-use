@@ -13,14 +13,16 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * zk java原生api方式
+ *
  * @author xiaoran
  * @date 2019/08/06
  */
-public class ZkClient implements Watcher {
+public class ZkApi implements Watcher {
     private CountDownLatch countDownLatch = new CountDownLatch(1);
     private ZooKeeper zookeeper;
 
-    public ZkClient(String host) {
+    public ZkApi(String host) {
         try {
             zookeeper = new ZooKeeper(host, 2000, this);
             countDownLatch.await();
@@ -157,7 +159,7 @@ public class ZkClient implements Watcher {
 
 
     public static void main(String[] args) throws Exception{
-        ZkClient zkClient = new ZkClient("172.23.7.9:2181");
+        ZkApi zkClient = new ZkApi("172.23.7.9:2181");
         List<String> children = zkClient.getChildren("/");
         System.out.println(children);
     }
