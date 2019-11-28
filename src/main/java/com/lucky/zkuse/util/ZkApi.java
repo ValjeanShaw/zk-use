@@ -42,8 +42,9 @@ public class ZkApi implements Watcher {
      */
     @Override
     public void process(WatchedEvent watchedEvent) {
+        //监听事件：连接建立
         if (watchedEvent.getState() == Event.KeeperState.SyncConnected) {
-            System.out.println("Watch received event");
+            System.out.println("Watch received event：connect the zk qurom");
             countDownLatch.countDown();
         }
     }
